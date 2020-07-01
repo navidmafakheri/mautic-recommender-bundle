@@ -61,7 +61,7 @@ class ItemQueryBuilder extends RecommenderFilterQueryBuilder
         $subQueryBuilder = $queryBuilder->getConnection()->createQueryBuilder();
         $subQueryBuilder
             ->select('NULL')->from($filter->getTable(), $tableAlias)
-            ->innerJoin($tableAlias, 'recommender_event_log', $tableAlias2, $tableAlias2.'.'.$this->filterField().' = '.$tableAlias.'.id')
+            ->innerJoin($tableAlias, MAUTIC_TABLE_PREFIX . 'recommender_event_log', $tableAlias2, $tableAlias2.'.'.$this->filterField().' = '.$tableAlias.'.id')
             ->andWhere($tableAlias2.'.'.$this->getIdentificator().' = l.id');
 
         if (!is_null($filter->getWhere())) {
